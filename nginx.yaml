@@ -1,0 +1,49 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    app: nginx
+  name: nginx
+spec:
+  containers:
+  - image: nginx
+    name: nginx
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2022-06-20T12:31:17Z"
+  labels:
+    app: nginx
+  name: nginx
+  namespace: default
+  resourceVersion: "7681"
+  uid: 1b5d897c-7e63-49a4-9a6b-998c3b6f5007
+spec:
+  allocateLoadBalancerNodePorts: true
+  clusterIP: 10.100.39.48
+  clusterIPs:
+  - 10.100.39.48
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - nodePort: 31646
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: nginx
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer: {}
